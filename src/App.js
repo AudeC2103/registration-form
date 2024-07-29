@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import Form from './Form';
-import { useSelector } from 'react-redux';
+import Form from './Form'; // Importation du composant Form
+import { useSelector } from 'react-redux'; // Importation du hook 'useSelector' pour accéder à l'état Redux
 
 function App() {
+  // Sélection des utilisateurs dans l'état Redux
   const users = useSelector((state) => state.user.users);
 
   return (

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser } from './userSlice';
+import { addUser } from './userSlice'; // Importation de l'action 'addUser'
 
+// Fonction composant 'Form'
 function Form() {
+  // État local pour gérer les valeurs du formulaire
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -11,9 +13,11 @@ function Form() {
     password: '',
   });
 
+  // État local pour gérer les messages d'erreur
   const [errors, setErrors] = useState({});
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Utilisation du hook 'useDispatch' pour envoyer des actions à Redux
 
+  // Fonction pour gérer les changements dans les champs du formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,18 +26,30 @@ function Form() {
     });
   };
 
+  // Fonction pour gérer la soumission du formulaire
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Empêche le rechargement de la page
 
+    // Validation de l'âge
     if (formData.age < 18) {
-      setErrors({ age: 'Votre âge doit être supérieur à 18 ans' });
+      setErrors({ age: 'L\'âge doit être supérieur à 18 ans.' });
       return;
     } else {
       setErrors({});
     }
 
+    // Envoi des données du formulaire au store Redux
     dispatch(addUser(formData));
     console.log(formData);
+
+    // Réinitialisation des champs du formulaire
+    setFormData({
+      firstName: '',
+      lastName: '',
+      age: '',
+      email: '',
+      password: '',
+    });
   };
 
   return (
@@ -52,7 +68,7 @@ function Form() {
         {errors.age && <p>{errors.age}</p>}
       </div>
       <div>
-      <label>Email</label>
+        <label>Email</label>
         <input type="email" name="email" value={formData.email} onChange={handleChange} />
       </div>
       <div>

@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Projet My Registration Form
+Ce projet est une application React simple qui permet de recueillir des informations d'inscription d'un utilisateur via un formulaire. Les informations sont ensuite stockées dans le store Redux.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sommaire
+Installation
+Utilisation
+Fichiers et composants
+Ressources complémentaires
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/AudeC2103/my-registration-form.git
+   cd my-registration-form
 
-### `npm start`
+2. Installez les dépendances :
+    npm install
+   
+## Utilisation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Démarrez l'application :
+    npm start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Ressources
 
-### `npm test`
+Documentation de React
+Redux Toolkit
+React Redux
+Tutoriel React
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Fichiers et composants
 
-### `npm run build`
+### `index.js`
+Ce fichier est le point d'entrée de l'application. Il configure et démarre l'application avec le store Redux.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **ReactDOM.createRoot** : Utilisé pour créer une racine React avec React 18.
+- **Provider** : Composant de react-redux qui permet à l'application d'accéder au store Redux.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `store.js`
+Configure le store Redux en intégrant le reducer `user`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **configureStore** : Fonction de `@reduxjs/toolkit` utilisée pour configurer le store.
 
-### `npm run eject`
+### `App.js`
+Composant principal qui affiche le formulaire et la liste des utilisateurs inscrits.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **useSelector** : Hook de `react-redux` pour accéder à l'état du store Redux.
+- **Form** : Composant formulaire inclus dans ce composant.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `userSlice.jsx`
+Crée un slice Redux pour gérer l'état des utilisateurs.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **createSlice** : Fonction de `@reduxjs/toolkit` pour créer un slice Redux.
+- **initialState** : État initial du slice, contenant un tableau `users` vide.
+- **addUser** : Action qui permet d'ajouter un utilisateur au tableau `users`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `Form.jsx`
+Composant formulaire qui gère les entrées utilisateur, la validation et envoie les données au store Redux. Utilise `useState` pour gérer l'état local et `useDispatch` pour envoyer des actions à Redux.
 
-## Learn More
+- **useState** : Hook utilisé pour créer des variables d'état. `formData` stocke les valeurs du formulaire et `errors` stocke les messages d'erreur.
+- **handleChange** : Fonction qui met à jour `formData` à chaque modification dans les champs du formulaire.
+- **handleSubmit** : Fonction exécutée lors de la soumission du formulaire. Elle vérifie que l'âge est supérieur à 18 ans et affiche les données du formulaire dans la console. En cas de succès, elle envoie les données au store Redux et réinitialise les champs du formulaire.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `App.css`
+Ce fichier contient les styles CSS pour l'application, créant une interface moderne et épurée avec des teintes de bleu et de gris.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
