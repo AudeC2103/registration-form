@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Form from './Form';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const users = useSelector((state) => state.user.users);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Formulaire d'inscription</h1>
+      <Form />
+      <h2>Liste des utilisateurs inscrits</h2>
+      <ul>
+        {users.map((user, index) => (
+          <li key={index}>
+            {user.firstName} {user.lastName}, {user.age} ans, {user.email}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
